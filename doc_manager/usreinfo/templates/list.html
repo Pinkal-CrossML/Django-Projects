@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    list view
+{% endblock %}
+
+{% block css %}
+<style>
+    ul{
+        background-color: aqua;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    {% for docs in all_docs %}
+    <ul>
+            <li>User: {{docs.user_name}}</li>
+            <li>Document: {{docs.doc_name}}</li>
+            <li>Category: {{docs.category}}</li>
+            <li>Link: {{docs.link}}</li>
+
+    </ul>
+    {% endfor %}
+
+{% endblock %}
