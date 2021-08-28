@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
@@ -45,7 +46,7 @@ class Movie(models.Model):
 	language = models.CharField(max_length=20)
 	artist = models.ManyToManyField(Artist)
 	duration = models.DecimalField(max_digits=3, decimal_places=2)
-	award = models.ManyToManyField(Award, null=True)
+	award = models.ManyToManyField(Award)
 
 
 	def __str__(self):
@@ -63,6 +64,20 @@ class Rating(models.Model):
 	Model to save movie and Its ratings
 	"""
 
-	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-	rate = models.IntegerField()
-	votes = models.IntegerField() 
+	RATINGS =[('0','0'),
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    ('4','4'),
+    ('5','5'),
+    ('6','6'),
+    ('7','7'),
+    ('8','8'),
+    ('9','9'),
+    ('10','10')
+    ]
+	movie_rating = models.CharField(max_length=20,choices=RATINGS,default='0')
+	movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
+	votes = models.IntegerField(default='0')
+	def __str__(self):
+		return self.movie.name + str(self.movie_rating) 

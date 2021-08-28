@@ -39,3 +39,8 @@ class RatingForm(ModelForm):
         widgets={
             'dob':DateInput()
         }
+
+class SearchForm(ModelForm):
+   class Meta:
+     model = Movie
+     fields = [ 'name']
