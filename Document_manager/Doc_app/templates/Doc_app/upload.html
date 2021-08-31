@@ -1,0 +1,16 @@
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="save" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- <input type="file" id="test" name="test" accept=".pdf,.doc"/> -->
+    <button type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'index' %}">Return to home</a></p>
+  <a class="nav-link" href="{% url 'logout' %}"> LOGOUT</a>
