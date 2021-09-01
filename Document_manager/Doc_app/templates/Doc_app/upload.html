@@ -13,4 +13,67 @@
   </form>
 
   <p><a href="{% url 'index' %}">Return to home</a></p>
-  <a class="nav-link" href="{% url 'logout' %}"> LOGOUT</a>
+  <a class="nav-link" href="{% url 'logout' %}"> LOGOUT</a><br><br>
+  <h1>Your All pdf flies </h1><br>
+
+  {% if pdf_list %}
+{% for pdf in pdf_list %}
+    <tr>
+        <th scope="row"></th>
+        <td>{{pdf.document}}</td>
+        <!-- <td>{{pdf.uploaded_at}}</td> --> 
+        <td><a href="{{ pdf.document.url }}" download="{{ pdf.document.url }}" class="btn btn-primary" target="_blank">Download</a></td>
+    </tr><br>
+    {% endfor %}
+{% endif %}
+
+{% if pdf_list %}
+{% for pdf in pdf_list %}
+    <tr>
+        <th scope="row"> {{forloop.counter}}</th>
+        <td>{{pdf.document}}</td>
+        <td>{{pdf.uploaded_at}}</td>
+    </tr>
+    {% endfor %}
+{% endif %}
+<form>
+    <input name="report_type" type="hidden" value='sort_by_name'>
+    <button type="submit">Sort By Name </button>
+</form>
+<form>
+    <input name="report_type" type="hidden" value='current_month'>
+    <button type="submit">Current month </button>
+</form>
+<form>
+    <input name="report_type" type="hidden" value='current_year'>
+    <button type="submit">Current year </button>
+</form>
+<form action="{% url 'upload' %}" method="POST" class="mx-3">
+    {% csrf_token %}
+    <div>
+      <label for="start" class="mx-1">From </label>
+        <input class="mr-2" type="date" id="start" name="startdate">
+        <label class="mx-1" for="end">To </label>
+        <input class="mx-2" type="date" id="end" name="enddate">
+        <input class="btn btn-primary my-3" type="submit" name="submit" value="Show">
+    </div>
+  </form >
+<!-- {{context}} -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>File</th>
+        <th>Date</th>
+</tr>
+{% for value in context %}
+<tr>
+    <td>{{value.id}}</td>
+    <!-- <td>{{value.user}}</td> -->
+    <td>{{ value.description }}</td>
+    <td>{{ value.document }}</td>
+<td>{{ value.uploaded_at }}</td>
+<td><a href="{{ pdf.document.url }}" download="{{ pdf.document.url }}" class="btn btn-primary" target="_blank">Download</a></td>
+</tr>
+{% endfor %}
+</table>
