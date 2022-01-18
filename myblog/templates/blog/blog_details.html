@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title%} Blog information {% endblock %}
+{% block body %}
+
+<div class="container-fluid">
+    <div class="col-10 mx-auto mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{blog.title}}</h4>
+                <br>
+
+                <small>{{blog.date}}</small>
+                <br>
+                <br>
+                <p class="card-text"> {{blog.desc}}</p>
+                <br>
+
+                <br>
+                <a type="submit" href="{% url 'blog' %}" class="btn btn-success"> Back</a>
+            </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+{% endblock %}

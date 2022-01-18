@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} Blogs {% endblock %}
+{% block body %}
+
+<div class="container ">
+    <br>
+    <br>
+
+    <div class="text-center">
+        <h1>
+            ALL LATEST BLOGS
+        </h1>
+    </div>
+    <br>
+    <br>
+
+    
+
+    <div class="row mx-auto">
+      {% for blog in blogs %}
+        <div class="col-4">
+            <div class="card">
+                <img src="{{blog.author.display_pic.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{blog.title}}</h5>
+                  <small class="blockquote-footer"> <i>{{blog.author}}</i></small>
+                  
+                  <br>
+                  <br>
+                <a type="button" href="{% url 'blog_details' blog.id %}" class="btn btn-outline-secondary">Read more</a>
+                </div>
+             </div>
+         </div> 
+         {% endfor %}
+      </div>      
+          
+   
+</div>
+
+{% endblock %}
+   

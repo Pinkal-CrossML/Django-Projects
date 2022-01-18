@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%} home {% endblock %}
+{% block body %}
+
+
+<div class="container mx-auto">
+
+
+    <div class=" text-center">
+
+        <div class="mb-5">
+            <h1> WELCOME TO MY DIMAND BLOG
+
+            </h1>
+        </div>
+        <img class="img-fluid rounded" src="{% static 'images/pic2.jpg' %}" alt="" />
+
+
+
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+        <h1> TRENDING POSTS </h1>
+
+    </div>
+
+
+    <div class="row mx-auto">
+        {% for blog in blogs %}
+        <div class="col-4">
+            <div class="card">
+                <img src="{{blog.author.display_pic.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{blog.title}}</h5>
+                    <small class="blockquote-footer"> <i>{{blog.author}}</i></small>
+
+                    <br>
+                    <br>
+                    <a type="button" href="{% url 'blog_details' blog.id %}" class="btn btn-outline-secondary">Read
+                        more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+    <div class="m-5 p-5">
+
+
+        <p class="text-center text-justify">There are many reasons to start a blog for personal use and only a handful of strong ones for business blogging. Blogging for business, projects, or anything else that might bring you money has a very straightforward purpose – to rank your website higher in Google SERPs, a.k.a. increase your visibility.
+
+            As a business, you rely on consumers to keep buying your products and services. As a new business, you rely on blogging to help you get to potential consumers and grab their attention. Without blogging, your website would remain invisible, whereas running a blog makes you searchable and competitive.</p>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+<br>
+
+
+
+
+{% endblock %}
