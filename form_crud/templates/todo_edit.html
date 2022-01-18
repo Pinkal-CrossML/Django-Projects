@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Todo Page</title>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    <div style="text-align: right;">
+        <a href="{% url  'Todo:todo' %}">Show  All Records</a>
+    </div><br>
+
+<h1> Enter your New Todo Information</h1>
+
+    <div>
+        <form action="{% url 'Todo:entry_edit' ob.id  %}" method="post">
+            {% csrf_token %}
+            Name  : {{form.task_name}}<br><br>
+            Email : {{form.description}}<br><br>
+            Phone : {{form.status}}<br><br>
+            Phone : {{form.date}}<br><br>
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+</head>
+<body>
+    {{msg}}
+    <div style="text-align: right;">
+        <form action="all">
+            <input type="submit" value="Show  All todo  Records">
+        </form>
+    </div><br>
+<h1> Enter your Todo</h1>
+
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+           <p>Task Name: {{form.task_name}}</p>
+           <p>Description: {{form.description}}</p>
+           <p>Status: {{form.status}}</p>
+           <p>Date: {{form.date}}</p>
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>
